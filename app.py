@@ -146,7 +146,7 @@ if st.session_state.vectorstore and st.session_state.criteria_list:
             llm = ChatGroq(groq_api_key=api_key, model_name="llama-3.3-70b-versatile")
             
             prompt = ChatPromptTemplate.from_template("""
-            Anda adalah Wali Kelas profesional. Tugas Anda adalah membuat **Narasi Deskripsi Rapot** yang personal untuk orang tua.
+             Anda adalah Wali Kelas profesional yang ramah. Tugas Anda adalah membuat **Narasi Deskripsi Rapot** yang personal untuk orang tua.
             
             Gunakan referensi RUBRIK berikut untuk menerjemahkan skor angka (1-4) menjadi kalimat deskriptif yang tepat:
             <rubrik>
@@ -157,11 +157,14 @@ if st.session_state.vectorstore and st.session_state.criteria_list:
             {input}
 
             Instruksi Penulisan:
-            1. Buka dengan sapaan hormat kepada Orang Tua [Nama Siswa].
+            1. Buka dengan sapaan ramah kepada Orang Tua [Nama Siswa].
             2. Paragraf 1: Jelaskan KEKUATAN siswa (aspek dengan skor 3 atau 4). Gabungkan deskripsi dari rubrik dengan kalimat yang mengapresiasi.
             3. Paragraf 2: Jelaskan AREA PENGEMBANGAN (aspek dengan skor 1 atau 2). Gunakan bahasa yang "sandwich" (positif-korektif-positif) dan tidak menghakimi. Berikan saran konkret berdasarkan kolom "NextStep" atau "Saran" di rubrik jika ada.
-            4. Tutup dengan kalimat motivasi dan harapan.
-            5. Gaya bahasa: Hangat, Profesional, Bahasa Indonesia Baku tapi bukan robot.
+            4. Jangan sebutkan untuk skor yang didapatkan, terjemahkan saja ke kalimat deskriptif.
+            5. Tutup dengan kalimat motivasi dan harapan yang tulus tanpa perlu dilebihkan.
+            6. Gaya bahasa: Hangat, Profesional, Bahasa Indonesia yang ramah.
+            7. Jangan gunakan kata saya tapi kami menunjukkan bahwa ini dari Tim. 
+            8. Buat tidak bertele-tele dan nyaman untuk dibaca lewat aplikasi pengirim pesan. 
             """)
             
             def format_docs(docs):
