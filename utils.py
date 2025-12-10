@@ -1,4 +1,3 @@
-%%writefile utils.py
 from IPython.utils import text
 import os
 from langchain_community.document_loaders import PyPDFLoader
